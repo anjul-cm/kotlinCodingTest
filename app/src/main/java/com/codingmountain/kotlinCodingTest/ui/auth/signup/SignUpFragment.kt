@@ -17,7 +17,15 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSignUpBinding.inflate(layoutInflater)
+
+        setClickListenerToSignInInsteadTextView()
         return binding.root
+    }
+
+    private fun setClickListenerToSignInInsteadTextView() {
+        binding.signUpFrgSignInInsteadTV.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     override fun onDestroyView() {
