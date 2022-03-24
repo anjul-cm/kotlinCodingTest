@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "431802317226",
+    "project_id": "charging-stations-cd214",
+    "storage_bucket": "charging-stations-cd214.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431802317226:android:af6eab5ad7bfadad8a13d3",
+        "android_client_info": {
+          "package_name": "com.codingmountain.kotlincodingtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431802317226-der4ji0fdnjjd73mmekrs8l5io9hchsv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpRA3fBsN1oxViTq5BVmEsXHu8a6yQCU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431802317226-der4ji0fdnjjd73mmekrs8l5io9hchsv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
