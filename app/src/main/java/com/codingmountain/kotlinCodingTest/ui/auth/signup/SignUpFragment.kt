@@ -23,7 +23,7 @@ class SignUpFragment : Fragment() {
     }
 
     private fun setClickListenerToSignInInsteadTextView() {
-        binding.signUpFrgSignInInsteadTV.setOnClickListener {
+        binding.signUpFrgLoginTV.setOnClickListener {
             requireActivity().onBackPressed()
         }
     }

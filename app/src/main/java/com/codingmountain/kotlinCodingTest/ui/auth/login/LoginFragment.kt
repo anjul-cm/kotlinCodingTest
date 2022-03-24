@@ -26,7 +26,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun setClickListenerToSignUpInsteadTextView() {
-        binding.loginFrgSignUpInsteadTV.setOnClickListener {
+        binding.loginFrgSignUpTV.setOnClickListener {
             parentFragmentManager.beginTransaction().setCustomAnimations(
                 R.anim.slide_in_left,
                 R.anim.slide_out_left,
