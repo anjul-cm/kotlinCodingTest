@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Diken Mhrz
+  ~  Copyright (c) 2021 Sunya Health Solution Pvt. Ltd . All rights reserved.
+  ~  Last modified 2/1/22, 4:57 PM
+  -->
+
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <translate
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:fromXDelta="-50%p"
+        android:toXDelta="0" />
+    <alpha
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0" />
+</set>
