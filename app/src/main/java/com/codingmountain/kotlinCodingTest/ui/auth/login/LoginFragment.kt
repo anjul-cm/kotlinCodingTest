@@ -5,14 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.codingmountain.kotlincodingtest.R
 import com.codingmountain.kotlincodingtest.databinding.FragmentLoginBinding
+import com.codingmountain.kotlincodingtest.ui.auth.AuthActivityViewModel
 import com.codingmountain.kotlincodingtest.ui.auth.signup.SignUpFragment
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
+    private val activityViewModel: AuthActivityViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,8 +27,18 @@ class LoginFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(layoutInflater)
 
         setClickListenerToSignUpInsteadTextView()
+        setClickListenerForLoginBtn()
 
         return binding.root
+    }
+
+    private fun setClickListenerForLoginBtn() {
+        binding.loginActLogInBtn.setOnClickListener {
+            activityViewModel.logIn(
+                binding.loginActEmailTV.text.toString().trim(),
+                binding.loginActPasswordTV.text.toString().trim()
+            )
+        }
     }
 
     private fun setClickListenerToSignUpInsteadTextView() {
@@ -32,7 +48,7 @@ class LoginFragment : Fragment() {
                 R.anim.slide_out_left,
                 R.anim.slide_in_right,
                 R.anim.slide_out_right
-            ).replace(R.id.authActivity_container, SignUpFragment())
+            ).replace(R.id.authAct_fragmentContainer, SignUpFragment())
                 .addToBackStack(null)
                 .commit()
         }
