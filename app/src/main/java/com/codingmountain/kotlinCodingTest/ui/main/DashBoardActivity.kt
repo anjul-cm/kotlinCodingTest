@@ -1,7 +1,6 @@
 package com.codingmountain.kotlincodingtest.ui.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.codingmountain.kotlincodingtest.databinding.ActivityDashBoardBinding
 import com.codingmountain.kotlincodingtest.ui.base.BaseActivity
 
