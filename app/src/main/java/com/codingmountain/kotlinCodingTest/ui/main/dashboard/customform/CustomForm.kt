@@ -47,7 +47,8 @@ open class CustomForm : LinearLayout {
 
     private fun getEditTextForNumber(): EditText {
         return getNormalEditText().apply {
-            inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
+            inputType =
+                InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL or InputType.TYPE_NUMBER_FLAG_SIGNED
         }
     }
 
@@ -59,7 +60,7 @@ open class CustomForm : LinearLayout {
 
     private fun getNormalEditText(): EditText {
         return EditText(context).apply {
-            layoutParams = LinearLayout.LayoutParams(
+            layoutParams = LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply {
