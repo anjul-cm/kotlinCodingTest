@@ -2,10 +2,13 @@ package com.codingmountain.kotlincodingtest.ui.main.dashboard
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.codingmountain.kotlincodingtest.R
 import com.codingmountain.kotlincodingtest.databinding.ActivityDashBoardBinding
 import com.codingmountain.kotlincodingtest.ui.auth.AuthActivity
 import com.codingmountain.kotlincodingtest.ui.base.BaseActivity
@@ -14,6 +17,7 @@ import com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview.Chargi
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class DashBoardActivity : BaseActivity() {
@@ -29,11 +33,13 @@ class DashBoardActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashBoardBinding.inflate(layoutInflater)
+        setSupportActionBar(binding.dashboardActToolBar)
+
+
         initializeFilterHelper()
         setObserverForCurrentUser()
         setUpSearchQueryChangeListener()
         setUpAdapterForRecyclerView()
-        setClickListenerForLogOutBtn()
 
         viewModel.fetchChargingStation()
         setContentView(binding.root)
@@ -58,11 +64,32 @@ class DashBoardActivity : BaseActivity() {
     private fun initializeFilterHelper() {
         filterHelper = FilterHelper(
             this,
-            binding.dashBoardActFilterIV,
             binding.dashBoardActFilterContainingScrollView,
             adapter,
             supportFragmentManager
         )
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_dashboard_act, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.dashBoardMenu_filter -> {
+                filterHelper.showAddFilterFragment()
+                true
+            }
+            R.id.dashBoardMenu_logOut -> {
+                viewModel.logOut()
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+
     }
 
     private fun setUpAdapterForRecyclerView() {
@@ -88,12 +115,6 @@ class DashBoardActivity : BaseActivity() {
                 startActivity(Intent(this, AuthActivity::class.java))
                 finish()
             }
-        }
-    }
-
-    private fun setClickListenerForLogOutBtn() {
-        binding.dashBoardActLogOutBtn.setOnClickListener {
-            viewModel.logOut()
         }
     }
 }

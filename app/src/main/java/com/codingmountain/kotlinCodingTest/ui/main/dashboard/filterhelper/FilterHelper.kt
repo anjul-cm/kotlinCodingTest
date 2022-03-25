@@ -7,7 +7,6 @@ import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.HorizontalScrollView
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.FragmentManager
 import androidx.paging.PagingData
@@ -20,7 +19,6 @@ private const val TAG = "FilterHelper"
 
 class FilterHelper(
     private val context: Context,
-    showFilterIV: ImageView,
     scrollingContainerForFilter: HorizontalScrollView,
     private val recyclerViewAdapter: ChargingStationsRVA,
     private val fragmentManager: FragmentManager
@@ -36,12 +34,9 @@ class FilterHelper(
 
     init {
         scrollingContainerForFilter.addView(filterContainer)
-        showFilterIV.setOnClickListener {
-            showAddFilterFragment()
-        }
     }
 
-    private fun showAddFilterFragment() {
+    fun showAddFilterFragment() {
         AddFilterBottomSheetFragment.onNewInstance(addedFilters).apply {
             addOnAddFilterCallback(object : AddFilterBottomSheetFragment.OnAddFilterClick {
                 override fun onAddFilterClick(filterList: List<FilterWithValue>) {
