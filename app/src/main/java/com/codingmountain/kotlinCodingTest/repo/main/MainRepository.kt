@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.PagingSource
+import com.codingmountain.kotlincodingtest.database.dao.StationDao
 import com.codingmountain.kotlincodingtest.network.responses.stationresponse.ChargingStation
 import com.codingmountain.kotlincodingtest.network.services.StationApi
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.paging.ChargingStationPagingSource
@@ -18,7 +20,8 @@ class MainRepository
 @Inject
 constructor(
     private val firebaseAuth: FirebaseAuth,
-    private val stationApi: StationApi
+    private val stationApi: StationApi,
+    private val stationDao: StationDao
 ) {
 
     private val _loggedInUserLiveData = MutableLiveData<FirebaseUser?>(firebaseAuth.currentUser)
@@ -30,10 +33,19 @@ constructor(
     }
 
     fun getChargingStationFlow(): Flow<PagingData<ChargingStation>> {
+        return getPager(ChargingStationPagingSource()).flow
+    }
+
+    fun getChargingStationFlowFromLocalDatabase(): Flow<PagingData<ChargingStation>> {
+        return getPager(stationDao.getAllStationPagingData()).flow
+    }
+
+    private fun getPager(pagingSource: PagingSource<Int, ChargingStation>): Pager<Int, ChargingStation> {
         return Pager(
             PagingConfig(
                 pageSize = 5, prefetchDistance = 5, enablePlaceholders = false
             )
-        ) { ChargingStationPagingSource() }.flow
+        ) { pagingSource }
+
     }
 }

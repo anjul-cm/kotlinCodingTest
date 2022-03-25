@@ -11,7 +11,8 @@ import javax.inject.Inject
 class DashBoardActivityViewModel @Inject
 constructor(private val mainRepository: MainRepository) : ViewModel() {
 
-    val chargingStationFlow = mainRepository.getChargingStationFlow().cachedIn(viewModelScope)
+    val chargingStationFlow =
+        mainRepository.getChargingStationFlowFromLocalDatabase().cachedIn(viewModelScope)
 
     val loggedInUserLiveData = mainRepository.loggedInUserLiveData
 
