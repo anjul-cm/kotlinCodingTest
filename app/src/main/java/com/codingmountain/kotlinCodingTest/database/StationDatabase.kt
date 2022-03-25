@@ -7,4 +7,8 @@ import com.codingmountain.kotlincodingtest.database.dao.StationDao
 @Database(entities = [StationDatabase::class], version = 1)
 abstract class StationDatabase : RoomDatabase() {
     abstract fun getStationDao(): StationDao
+
+    companion object{
+        const val DATABASE_NAME = "StationDatabase"
+    }
 }
