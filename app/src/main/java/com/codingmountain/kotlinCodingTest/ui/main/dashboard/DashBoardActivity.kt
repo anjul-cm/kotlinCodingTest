@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codingmountain.kotlincodingtest.R
@@ -33,7 +34,8 @@ class DashBoardActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashBoardBinding.inflate(layoutInflater)
-        setSupportActionBar(binding.dashboardActToolBar)
+
+        setUpToolbar()
 
 
         initializeFilterHelper()
@@ -43,6 +45,12 @@ class DashBoardActivity : BaseActivity() {
 
         viewModel.fetchChargingStation()
         setContentView(binding.root)
+    }
+
+    private fun setUpToolbar() {
+        setSupportActionBar(binding.dashboardActToolBar)
+        binding.dashboardActToolBar.overflowIcon =
+            ContextCompat.getDrawable(this, R.drawable.ic_baseline_overflow)
     }
 
     private fun setUpSearchQueryChangeListener() {
