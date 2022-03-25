@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitModule {
     @Provides
     fun providesRetrofitInstance() =
-        Retrofit.Builder().baseUrl("https://gist.githubusercontent.com/")
+        Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(
                 getHttpClient()
@@ -25,11 +25,15 @@ class RetrofitModule {
     private fun getHttpClient(): OkHttpClient {
         return OkHttpClient.Builder().addInterceptor(
             HttpLoggingInterceptor().apply {
-                setLevel(HttpLoggingInterceptor.Level.BODY )
+                setLevel(HttpLoggingInterceptor.Level.BODY)
             }
         ).build()
     }
 
     @Provides
     fun providesStationApi(retrofit: Retrofit) = retrofit.create(StationApi::class.java)
+
+    companion object {
+        private const val BASE_URL = "https://gist.githubusercontent.com/"
+    }
 }
