@@ -1,15 +1,17 @@
 package com.codingmountain.kotlincodingtest.ui.main.dashboard.filterhelper
 
+import com.codingmountain.kotlincodingtest.ui.main.dashboard.customform.FormType
+
 private const val TAG = "Filter"
 
-enum class Filter(val filterName: String) {
-    ADDRESS("Address"),
-    CITY("City"),
-    LATITUDE("Latitude"),
-    LONGITUDE("Longitude"),
-    PROVINCE("Province"),
-    TELEPHONE("Telephone"),
-    TYPE("Type");
+enum class Filter(val filterName: String, val requiredFormType: FormType) {
+    ADDRESS("Address", FormType.STRING),
+    CITY("City", FormType.STRING),
+    LATITUDE("Latitude", FormType.NUMBER),
+    LONGITUDE("Longitude", FormType.NUMBER),
+    PROVINCE("Province", FormType.STRING),
+    TELEPHONE("Telephone", FormType.STRING),
+    TYPE("Type", FormType.STRING);
 
 }
 

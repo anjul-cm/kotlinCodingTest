@@ -2,13 +2,12 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fillViewport="true">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="24dp">
 
         <TextView
             android:id="@+id/textView2"
@@ -16,7 +15,8 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
             android:text="Filters"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,6 +24,7 @@
             android:id="@+id/addFilterFrg_filterForm_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/addFilterFrg_addFilter_btn"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +35,10 @@
             android:id="@+id/addFilterFrg_addFilter_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingVertical="12dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:paddingVertical="16dp"
             android:text="Add Filters"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

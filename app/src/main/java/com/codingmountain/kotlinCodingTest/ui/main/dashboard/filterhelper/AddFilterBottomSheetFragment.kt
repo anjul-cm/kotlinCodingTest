@@ -3,9 +3,9 @@ package com.codingmountain.kotlincodingtest.ui.main.dashboard.filterhelper
 import android.os.Build
 import android.os.Bundle
 import android.view.*
-import android.widget.EditText
-import android.widget.LinearLayout
 import com.codingmountain.kotlincodingtest.databinding.FragmentAddFilterBottomSheetBinding
+import com.codingmountain.kotlincodingtest.ui.main.dashboard.customform.CustomForm
+import com.codingmountain.kotlincodingtest.ui.main.dashboard.customform.FormInfo
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -20,7 +20,7 @@ class AddFilterBottomSheetFragment : BottomSheetDialogFragment() {
 
     private var onAddClickCallback: OnAddFilterClick? = null
 
-    private val formHashMap = hashMapOf<Filter, EditText>()
+    private val formHashMap = hashMapOf<Filter, CustomForm>()
 
     private var appliedFilters = listOf<FilterWithValue>()
 
@@ -58,11 +58,11 @@ class AddFilterBottomSheetFragment : BottomSheetDialogFragment() {
     private fun getFinalFilterList(): List<FilterWithValue> {
         val requiredList = mutableListOf<FilterWithValue>()
         formHashMap.forEach { form ->
-            if (form.value.text.isNotBlank()) {
+            if (form.value.formValue.isNotBlank()) {
                 requiredList.add(
                     FilterWithValue(
                         form.key,
-                        form.value.text.toString().trim()
+                        form.value.formValue
                     )
                 )
             }
@@ -73,26 +73,24 @@ class AddFilterBottomSheetFragment : BottomSheetDialogFragment() {
     private fun addAvailableFilters() {
         binding.addFilterFrgFilterFormContainer.removeAllViews()
         FilterWithValue.getAllFilters().forEach { filterWithValue ->
-            val editText = EditText(requireContext()).apply {
-                layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
+            val customForm = CustomForm(requireContext()).initView(
+                FormInfo(
+                    filterWithValue.filter.requiredFormType, filterWithValue.filter.filterName
                 )
-                hint = filterWithValue.filter.filterName
-            }
-            formHashMap[filterWithValue.filter] = editText
-            setFilterValueIfAlreadyFilterAdded(editText, filterWithValue)
-            binding.addFilterFrgFilterFormContainer.addView(editText)
+            )
+            formHashMap[filterWithValue.filter] = customForm
+            setFilterValueIfAlreadyFilterAdded(customForm, filterWithValue)
+            binding.addFilterFrgFilterFormContainer.addView(customForm)
         }
     }
 
     private fun setFilterValueIfAlreadyFilterAdded(
-        editText: EditText,
+        customForm: CustomForm,
         filterWithValue: FilterWithValue
     ) {
         appliedFilters.forEach {
             if (it.filter == filterWithValue.filter) {
-                editText.setText(it.filterValue)
+                customForm.setValue(it.filterValue)
                 return
             }
         }
