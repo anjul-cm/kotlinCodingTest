@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.codingmountain.kotlincodingtest.network.Resource
-import com.codingmountain.kotlincodingtest.repo.auth.AuthRepositoryImpl
+import com.codingmountain.kotlincodingtest.repo.auth.AuthRepository
 import com.google.firebase.auth.AuthResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -13,18 +13,18 @@ import javax.inject.Inject
 class AuthActivityViewModel
 @Inject
 constructor(
-    private val authRepositoryImpl: AuthRepositoryImpl
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private val _authenticationLiveData = MutableLiveData<Resource<AuthResult>>()
     val authenticationLiveData: LiveData<Resource<AuthResult>> get() = _authenticationLiveData
 
     fun logIn(email: String, password: String) {
-        authRepositoryImpl.signIn(email, password) { _authenticationLiveData.value = it }
+        authRepository.signIn(email, password) { _authenticationLiveData.value = it }
     }
 
     fun signUp(email: String, password: String) {
-        authRepositoryImpl.signUp(email, password) { _authenticationLiveData.value = it }
+        authRepository.signUp(email, password) { _authenticationLiveData.value = it }
     }
 
 }

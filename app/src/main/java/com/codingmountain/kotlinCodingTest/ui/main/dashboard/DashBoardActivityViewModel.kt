@@ -3,20 +3,20 @@ package com.codingmountain.kotlincodingtest.ui.main.dashboard
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.codingmountain.kotlincodingtest.repo.main.MainRepositoryImpl
+import com.codingmountain.kotlincodingtest.repo.main.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class DashBoardActivityViewModel @Inject
-constructor(private val mainRepositoryImpl: MainRepositoryImpl) : ViewModel() {
+constructor(private val mainRepository: MainRepository) : ViewModel() {
 
-    val chargingStationFlow = mainRepositoryImpl.getChargingStationFlow().cachedIn(viewModelScope)
+    val chargingStationFlow = mainRepository.getChargingStationFlow().cachedIn(viewModelScope)
 
-    val loggedInUserLiveData = mainRepositoryImpl.loggedInUserLiveData
+    val loggedInUserLiveData = mainRepository.loggedInUserLiveData
 
     fun logOut() {
-        mainRepositoryImpl.logOut()
+        mainRepository.logOut()
     }
 
 
