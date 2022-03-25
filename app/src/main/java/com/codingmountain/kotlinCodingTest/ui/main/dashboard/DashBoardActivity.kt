@@ -34,6 +34,8 @@ class DashBoardActivity : BaseActivity() {
         setUpSearchQueryChangeListener()
         setUpAdapterForRecyclerView()
         setClickListenerForLogOutBtn()
+
+        viewModel.fetchChargingStation()
         setContentView(binding.root)
     }
 
@@ -76,6 +78,7 @@ class DashBoardActivity : BaseActivity() {
                 )
             }
         }
+
 
     }
 

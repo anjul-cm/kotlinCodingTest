@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.PagingSource
 import com.codingmountain.kotlincodingtest.database.dao.StationDao
+import com.codingmountain.kotlincodingtest.network.Resource
+import com.codingmountain.kotlincodingtest.network.SafeApiCall
 import com.codingmountain.kotlincodingtest.network.responses.stationresponse.ChargingStation
 import com.codingmountain.kotlincodingtest.network.services.StationApi
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.paging.ChargingStationPagingSource
@@ -33,19 +34,32 @@ constructor(
     }
 
     fun getChargingStationFlow(): Flow<PagingData<ChargingStation>> {
-        return getPager(ChargingStationPagingSource()).flow
+        return Pager(getPagingConfig()) {
+            ChargingStationPagingSource()
+        }.flow
     }
 
     fun getChargingStationFlowFromLocalDatabase(): Flow<PagingData<ChargingStation>> {
-        return getPager(stationDao.getAllStationPagingData()).flow
+        return Pager(
+            getPagingConfig()
+        ) { stationDao.getAllStationPagingSource() }.flow
     }
 
-    private fun getPager(pagingSource: PagingSource<Int, ChargingStation>): Pager<Int, ChargingStation> {
-        return Pager(
-            PagingConfig(
-                pageSize = 5, prefetchDistance = 5, enablePlaceholders = false
-            )
-        ) { pagingSource }
+    private fun getPagingConfig(): PagingConfig {
+        return PagingConfig(
+            pageSize = 5, prefetchDistance = 5, enablePlaceholders = false
+        )
+    }
 
+    suspend fun fetchAndStoreChargingStation(): Resource<List<ChargingStation>> {
+        val response = SafeApiCall.execute { stationApi.getChargingStations() }
+        when (response) {
+            is Resource.Failure -> {} //These cases will be handled by UI observing the fetch livedata.
+            Resource.Loading -> {}
+            is Resource.Success -> {
+                stationDao.insertStationList(response.value)
+            }
+        }
+        return response
     }
 }

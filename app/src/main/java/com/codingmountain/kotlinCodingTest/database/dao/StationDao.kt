@@ -16,7 +16,7 @@ interface StationDao {
     suspend fun insertStationList(stationList: List<ChargingStation>)
 
     @Query("Select * from ChargingStation")
-    fun getAllStationPagingData(): PagingSource<Int, ChargingStation>
+    fun getAllStationPagingSource(): PagingSource<Int, ChargingStation>
 
     @Query("Delete from ChargingStation")
     suspend fun deleteAll()
