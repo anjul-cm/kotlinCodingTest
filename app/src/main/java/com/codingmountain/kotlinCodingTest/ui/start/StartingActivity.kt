@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.codingmountain.kotlincodingtest.ui.auth.AuthActivity
-import com.codingmountain.kotlincodingtest.ui.main.DashBoardActivity
+import com.codingmountain.kotlincodingtest.ui.main.dashboard.DashBoardActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class StartingActivity : AppCompatActivity() {

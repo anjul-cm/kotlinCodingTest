@@ -12,7 +12,7 @@
         android:theme="@style/Theme.KotlinCodingTest">
 
         <activity
-            android:name=".ui.main.DashBoardActivity"
+            android:name=".ui.main.dashboard.DashBoardActivity"
             android:exported="false" />
         <activity
             android:name=".ui.auth.AuthActivity"

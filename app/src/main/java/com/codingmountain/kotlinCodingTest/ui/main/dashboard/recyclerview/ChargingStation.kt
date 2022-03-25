@@ -1,4 +1,4 @@
-package com.codingmountain.kotlincodingtest.ui.main.recyclerview
+package com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview
 
 data class ChargingStation(
     val address: String,

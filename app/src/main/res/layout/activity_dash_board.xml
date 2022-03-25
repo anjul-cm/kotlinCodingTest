@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray_100"
     android:padding="24dp"
-    tools:context=".ui.main.DashBoardActivity">
+    tools:context=".ui.main.dashboard.DashBoardActivity">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"

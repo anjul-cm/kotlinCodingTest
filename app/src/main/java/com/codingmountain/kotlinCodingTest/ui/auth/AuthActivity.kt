@@ -11,7 +11,7 @@ import com.codingmountain.kotlincodingtest.databinding.ActivityAuthBinding
 import com.codingmountain.kotlincodingtest.network.Resource
 import com.codingmountain.kotlincodingtest.ui.auth.login.LoginFragment
 import com.codingmountain.kotlincodingtest.ui.base.BaseActivity
-import com.codingmountain.kotlincodingtest.ui.main.DashBoardActivity
+import com.codingmountain.kotlincodingtest.ui.main.dashboard.DashBoardActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.codingmountain.kotlincodingtest.ui.main.recyclerview
+package com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

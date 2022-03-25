@@ -1,8 +1,8 @@
-package com.codingmountain.kotlincodingtest.ui.main.paging
+package com.codingmountain.kotlincodingtest.ui.main.dashboard.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.codingmountain.kotlincodingtest.ui.main.recyclerview.ChargingStation
+import com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview.ChargingStation
 import com.google.gson.Gson
 import org.json.JSONArray
 

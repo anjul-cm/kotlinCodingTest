@@ -1,4 +1,4 @@
-package com.codingmountain.kotlincodingtest.ui.main
+package com.codingmountain.kotlincodingtest.ui.main.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,8 +6,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.codingmountain.kotlincodingtest.repo.main.MainRepositoryImpl
-import com.codingmountain.kotlincodingtest.ui.main.paging.ChargingStationPagingSource
-import com.codingmountain.kotlincodingtest.ui.main.recyclerview.ChargingStation
+import com.codingmountain.kotlincodingtest.ui.main.dashboard.paging.ChargingStationPagingSource
+import com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview.ChargingStation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

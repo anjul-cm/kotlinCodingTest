@@ -1,4 +1,4 @@
-package com.codingmountain.kotlincodingtest.ui.main
+package com.codingmountain.kotlincodingtest.ui.main.dashboard
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.codingmountain.kotlincodingtest.databinding.ActivityDashBoardBinding
 import com.codingmountain.kotlincodingtest.ui.auth.AuthActivity
 import com.codingmountain.kotlincodingtest.ui.base.BaseActivity
-import com.codingmountain.kotlincodingtest.ui.main.recyclerview.ChargingStationsRVA
+import com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview.ChargingStationsRVA
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
