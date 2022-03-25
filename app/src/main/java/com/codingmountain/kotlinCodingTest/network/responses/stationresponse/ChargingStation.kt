@@ -1,4 +1,4 @@
-package com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview
+package com.codingmountain.kotlincodingtest.network.responses.stationresponse
 
 data class ChargingStation(
     val address: String,

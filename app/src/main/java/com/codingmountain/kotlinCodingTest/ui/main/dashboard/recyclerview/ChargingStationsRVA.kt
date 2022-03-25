@@ -6,6 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.codingmountain.kotlincodingtest.databinding.LayoutStationBinding
+import com.codingmountain.kotlincodingtest.network.responses.stationresponse.ChargingStation
 
 class ChargingStationsRVA :
     PagingDataAdapter<ChargingStation, ChargingStationsRVA.Holder>(ChargingStationDiffCallback()) {

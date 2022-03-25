@@ -2,7 +2,7 @@ package com.codingmountain.kotlincodingtest.ui.main.dashboard.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview.ChargingStation
+import com.codingmountain.kotlincodingtest.network.responses.stationresponse.ChargingStation
 import com.google.gson.Gson
 import org.json.JSONArray
 

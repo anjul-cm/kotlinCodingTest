@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.HorizontalScrollView
@@ -14,7 +13,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.paging.PagingData
 import androidx.paging.filter
 import com.codingmountain.kotlincodingtest.databinding.LayoutAppliedFiltersBinding
-import com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview.ChargingStation
+import com.codingmountain.kotlincodingtest.network.responses.stationresponse.ChargingStation
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview.ChargingStationsRVA
 
 private const val TAG = "FilterHelper"
@@ -112,7 +111,6 @@ class FilterHelper(
             }
             var visible = true
             addedFilters.forEach { filterWithValue ->
-                Log.e(TAG, "filterData: $filterWithValue")
                 visible = when (filterWithValue.filter) {
                     Filter.ADDRESS -> matchesWithValue(it.address, filterWithValue.filterValue)
                     Filter.CITY -> matchesWithValue(it.city, filterWithValue.filterValue)
