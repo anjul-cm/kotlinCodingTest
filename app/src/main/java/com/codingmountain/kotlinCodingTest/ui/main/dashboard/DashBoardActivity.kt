@@ -84,19 +84,21 @@ class DashBoardActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
+        when (item.itemId) {
             R.id.dashBoardMenu_filter -> {
                 filterHelper.showAddFilterFragment()
-                true
+            }
+            R.id.dashBoardMenu_deleteLocal -> {
+                viewModel.deleteAllData()
             }
             R.id.dashBoardMenu_logOut -> {
                 viewModel.logOut()
-                true
             }
             else -> {
-                super.onOptionsItemSelected(item)
+                return super.onOptionsItemSelected(item)
             }
         }
+        return true
 
     }
 

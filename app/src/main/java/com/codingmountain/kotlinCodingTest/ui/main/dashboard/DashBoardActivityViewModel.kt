@@ -35,5 +35,11 @@ constructor(private val mainRepository: MainRepository) : ViewModel() {
         }
     }
 
+    fun deleteAllData() {
+        viewModelScope.launch {
+            mainRepository.deleteAllData()
+        }
+    }
+
 
 }

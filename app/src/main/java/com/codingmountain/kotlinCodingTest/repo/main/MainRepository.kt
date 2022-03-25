@@ -62,4 +62,8 @@ constructor(
         }
         return response
     }
+
+    suspend fun deleteAllData() {
+        stationDao.deleteAll()
+    }
 }

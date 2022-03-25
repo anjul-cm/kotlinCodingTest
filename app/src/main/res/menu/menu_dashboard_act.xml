@@ -6,6 +6,11 @@
         android:icon="@drawable/ic_filter_icon"
         android:title="Add Filter"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/dashBoardMenu_deleteLocal"
+        android:title="Delete Local Data" />
+    
     <item
         android:id="@+id/dashBoardMenu_logOut"
         android:title="Log Out"
