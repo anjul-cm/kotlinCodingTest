@@ -1,6 +1,12 @@
 package com.codingmountain.kotlincodingtest.network.responses.stationresponse
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class ChargingStation(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val address: String,
     val city: String,
     val latitude: String,
