@@ -35,6 +35,13 @@ class DashBoardActivity : BaseActivity() {
         binding.dashboardActStationsRV.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
+
+        lifecycleScope.launch {
+            viewModel.chargingStationFlow.collectLatest {
+                adapter.submitData(it)
+            }
+        }
+
     }
 
     private fun setObserverForCurrentUser() {
