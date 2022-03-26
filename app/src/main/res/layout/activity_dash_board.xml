@@ -27,16 +27,27 @@
             app:queryHint="Search For Stations" />
     </androidx.appcompat.widget.Toolbar>
 
+    <ProgressBar
+        android:id="@+id/dashboardAct_fetching_progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardAct_toolBar"
+        tools:visibility="visible" />
+
 
     <HorizontalScrollView
         android:id="@+id/dashBoardAct_filterContaining_scrollView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
-
         app:layout_constraintEnd_toEndOf="@+id/dashboardAct_stations_RV"
         app:layout_constraintStart_toStartOf="@+id/dashboardAct_stations_RV"
-        app:layout_constraintTop_toBottomOf="@+id/dashboardAct_toolBar" />
+        app:layout_constraintTop_toBottomOf="@+id/dashboardAct_fetching_progressBar" />
 
 
     <androidx.recyclerview.widget.RecyclerView

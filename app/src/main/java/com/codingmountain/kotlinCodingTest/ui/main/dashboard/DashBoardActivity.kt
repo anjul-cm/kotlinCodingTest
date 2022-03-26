@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -11,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codingmountain.kotlincodingtest.R
 import com.codingmountain.kotlincodingtest.databinding.ActivityDashBoardBinding
+import com.codingmountain.kotlincodingtest.network.Resource
 import com.codingmountain.kotlincodingtest.ui.auth.AuthActivity
 import com.codingmountain.kotlincodingtest.ui.base.BaseActivity
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.filterhelper.FilterHelper
@@ -39,10 +41,21 @@ class DashBoardActivity : BaseActivity() {
 
         setObserverForCurrentUser()
         setUpSearchQueryChangeListener()
+        setUpObserverForFetchingData()
 
         setUpAdapterForRecyclerView()
 
         setContentView(binding.root)
+    }
+
+    private fun setUpObserverForFetchingData() {
+        viewModel.fetchChargingLiveData.observe(this) { fetchingStatus ->
+            binding.dashboardActFetchingProgressBar.visibility = when (fetchingStatus) {
+                is Resource.Failure -> View.GONE
+                Resource.Loading -> View.VISIBLE
+                is Resource.Success -> View.GONE
+            }
+        }
     }
 
     private fun setUpToolbar() {
