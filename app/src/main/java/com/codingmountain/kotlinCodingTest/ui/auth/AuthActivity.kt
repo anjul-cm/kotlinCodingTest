@@ -5,13 +5,13 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.viewModels
 import com.codingmountain.kotlincodingtest.databinding.ActivityAuthBinding
 import com.codingmountain.kotlincodingtest.network.Resource
 import com.codingmountain.kotlincodingtest.ui.auth.login.LoginFragment
 import com.codingmountain.kotlincodingtest.ui.base.BaseActivity
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.DashBoardActivity
+import com.codingmountain.kotlincodingtest.utils.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,11 +53,7 @@ class AuthActivity : BaseActivity() {
     }
 
     private fun showErrorToast(error: String) {
-        Toast.makeText(
-            this,
-            error,
-            Toast.LENGTH_SHORT
-        ).show()
+        showToast(error)
     }
 
     private fun hideLoading() {
