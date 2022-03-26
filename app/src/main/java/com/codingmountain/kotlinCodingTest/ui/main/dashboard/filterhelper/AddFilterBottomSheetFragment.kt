@@ -14,6 +14,7 @@ import android.view.*
 import com.codingmountain.kotlincodingtest.databinding.FragmentAddFilterBottomSheetBinding
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.customform.CustomForm
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.customform.FormInfo
+import com.codingmountain.kotlincodingtest.utils.extensions.dpToPx
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -123,7 +124,7 @@ class AddFilterBottomSheetFragment : BottomSheetDialogFragment() {
                     0,
                     0,
                     0,
-                    imeHeight
+                    imeHeight + requireContext().dpToPx(24)
                 )
                 windowInsets
             }
