@@ -74,7 +74,7 @@ class DashBoardActivity : BaseActivity() {
 
     private fun setUpToolbar() {
         setSupportActionBar(binding.dashboardActToolBar)
-        binding.dashboardActToolBar.title = ""
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         binding.dashboardActToolBar.overflowIcon =
             ContextCompat.getDrawable(this, R.drawable.ic_baseline_overflow)
     }
@@ -113,10 +113,10 @@ class DashBoardActivity : BaseActivity() {
         menuItem?.let {
             viewModel.hardCodedDataSourceLiveData.observe(this) { hardCoded ->
                 menuItem.title = if (hardCoded) {
-                    binding.dashboardActToolBar.title = "Hard Coded Data"
+                    binding.dashBoardActActionBarTitleTV.text = "Hard Coded Data"
                     "Show Local Data"
                 } else {
-                    binding.dashboardActToolBar.title = "Locally Stored Data"
+                    binding.dashBoardActActionBarTitleTV.text = "Locally Stored Data"
                     "Show Hard Coded Data"
                 }
             }
