@@ -6,6 +6,13 @@
   ~ All rights reserved.
   -->
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/blue_200" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="?attr/colorPrimary" />
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_electric_vehicle_charging_station"
+        android:gravity="center" />
+</layer-list>
