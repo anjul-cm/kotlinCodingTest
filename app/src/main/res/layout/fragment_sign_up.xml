@@ -50,7 +50,7 @@
         app:startIconDrawable="@drawable/ic_baseline_email_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signupFrg_email_ET"
+            android:id="@+id/signUpFrg_email_ET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -73,7 +73,7 @@
         app:startIconDrawable="@drawable/ic_baseline_vpn_key_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signUpFrg_password_TV"
+            android:id="@+id/signUpFrg_password_ET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -98,7 +98,7 @@
         app:startIconDrawable="@drawable/ic_baseline_vpn_key_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signUpFrg_reEnterPasswore_TV"
+            android:id="@+id/signUpFrg_reEnterPassword_ET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Re-enter your password"
