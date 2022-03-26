@@ -28,6 +28,7 @@ import com.codingmountain.kotlincodingtest.ui.base.BaseActivity
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.filterhelper.FilterHelper
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview.ChargingStationsRVA
 import com.codingmountain.kotlincodingtest.utils.adapter.ErrorStateAdapter
+import com.codingmountain.kotlincodingtest.utils.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -73,7 +74,10 @@ class DashBoardActivity : BaseActivity() {
     private fun setUpObserverForFetchingData() {
         viewModel.fetchChargingLiveData.observe(this) { fetchingStatus ->
             binding.dashboardActFetchingProgressBar.visibility = when (fetchingStatus) {
-                is Resource.Failure -> View.INVISIBLE
+                is Resource.Failure -> {
+                    showToast(fetchingStatus.errorMsg)
+                    View.INVISIBLE
+                }
                 Resource.Loading -> View.VISIBLE
                 is Resource.Success -> View.INVISIBLE
             }
