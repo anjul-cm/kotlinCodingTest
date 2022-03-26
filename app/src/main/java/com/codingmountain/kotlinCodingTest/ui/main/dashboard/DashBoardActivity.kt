@@ -43,7 +43,6 @@ class DashBoardActivity : BaseActivity() {
         setUpSearchQueryChangeListener()
         setUpAdapterForRecyclerView()
 
-        viewModel.fetchChargingStation()
         setContentView(binding.root)
     }
 
@@ -90,6 +89,9 @@ class DashBoardActivity : BaseActivity() {
             }
             R.id.dashBoardMenu_deleteLocal -> {
                 viewModel.deleteAllData()
+            }
+            R.id.dashBoardMenu_fetchData -> {
+                viewModel.fetchChargingStation()
             }
             R.id.dashBoardMenu_logOut -> {
                 viewModel.logOut()
