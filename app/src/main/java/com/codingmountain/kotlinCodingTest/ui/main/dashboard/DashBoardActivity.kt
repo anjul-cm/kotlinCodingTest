@@ -45,7 +45,15 @@ class DashBoardActivity : BaseActivity() {
 
         setUpAdapterForRecyclerView()
 
+        setClickListenerForShowFilterBtn()
+
         setContentView(binding.root)
+    }
+
+    private fun setClickListenerForShowFilterBtn() {
+        binding.dashBoardActFilterIV.setOnClickListener {
+            filterHelper.showAddFilterFragment()
+        }
     }
 
     private fun setUpObserverForFetchingData() {
@@ -111,9 +119,6 @@ class DashBoardActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.dashBoardMenu_filter -> {
-                filterHelper.showAddFilterFragment()
-            }
             R.id.dashBoardMenu_deleteLocal -> {
                 viewModel.deleteAllData()
             }
