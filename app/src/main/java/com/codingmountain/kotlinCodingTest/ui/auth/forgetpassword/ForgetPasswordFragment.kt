@@ -70,7 +70,7 @@ class ForgetPasswordFragment : Fragment() {
                     binding.forgetPasswordFrgMsgTV.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.yellow_600
+                            R.color.green_600
                         )
                     )
                 }

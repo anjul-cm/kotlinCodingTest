@@ -146,7 +146,7 @@
         android:layout_marginStart="8dp"
         android:padding="4dp"
         android:text="Log In"
-        android:textColor="@color/blue_400"
+        android:textColor="?attr/colorPrimaryVariant"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"

@@ -10,12 +10,12 @@
     <!-- Base application theme. -->
     <style name="Theme.KotlinCodingTest" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_500</item>
-        <item name="colorPrimaryVariant">@color/blue_700</item>
+        <item name="colorPrimary">#00ACC1</item>
+        <item name="colorPrimaryVariant">#00838F</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/green_400</item>
-        <item name="colorSecondaryVariant">@color/green_600</item>
+        <item name="colorSecondary">#43A047</item>
+        <item name="colorSecondaryVariant">#388E3C</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
