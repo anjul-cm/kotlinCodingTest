@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import com.codingmountain.kotlincodingtest.R
 import com.codingmountain.kotlincodingtest.databinding.FragmentLoginBinding
 import com.codingmountain.kotlincodingtest.ui.auth.AuthActivityViewModel
+import com.codingmountain.kotlincodingtest.ui.auth.forgetpassword.ForgetPasswordFragment
 import com.codingmountain.kotlincodingtest.ui.auth.signup.SignUpFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,8 +29,22 @@ class LoginFragment : Fragment() {
 
         setClickListenerToSignUpInsteadTextView()
         setClickListenerForLoginBtn()
+        setClickListenerForForgetPwTextView()
 
         return binding.root
+    }
+
+    private fun setClickListenerForForgetPwTextView() {
+        binding.loginFrgForgetPasswordTV.setOnClickListener {
+            parentFragmentManager.beginTransaction().setCustomAnimations(
+                R.anim.slide_in_left,
+                R.anim.slide_out_left,
+                R.anim.slide_in_right,
+                R.anim.slide_out_right
+            ).replace(R.id.authAct_fragmentContainer, ForgetPasswordFragment())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     private fun setClickListenerForLoginBtn() {

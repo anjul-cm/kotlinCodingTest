@@ -87,4 +87,13 @@ constructor(
             }
         }
 
+    fun resetPassword(email: String, status: (Resource<Unit>) -> Unit) {
+        firebaseAuth.sendPasswordResetEmail(email).addOnSuccessListener {
+            status(Resource.Success(Unit))
+        }.addOnFailureListener { exception ->
+            status(getFailureResource(exception, "Something went wrong."))
+        }
+
+    }
+
 }
