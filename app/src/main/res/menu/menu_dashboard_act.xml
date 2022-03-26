@@ -8,6 +8,10 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/dashBoardMenu_changeDataSource"
+        android:title="Show Hard Coded Data" />
+
+    <item
         android:id="@+id/dashBoardMenu_deleteLocal"
         android:title="Delete Local Data" />
 

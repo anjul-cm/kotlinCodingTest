@@ -1,9 +1,6 @@
 package com.codingmountain.kotlincodingtest.ui.main.dashboard
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.paging.cachedIn
 import com.codingmountain.kotlincodingtest.network.Resource
 import com.codingmountain.kotlincodingtest.network.responses.stationresponse.ChargingStation
@@ -19,8 +16,18 @@ constructor(private val mainRepository: MainRepository) : ViewModel() {
     private val _fetchChargingStationLiveData = MutableLiveData<Resource<List<ChargingStation>>>()
     val fetchChargingLiveData: LiveData<Resource<List<ChargingStation>>> get() = _fetchChargingStationLiveData
 
-    val chargingStationFlow =
-        mainRepository.getChargingStationFlowFromLocalDatabase().cachedIn(viewModelScope)
+    private val _hardCodedDataSourceLiveData = MutableLiveData(false)
+    val hardCodedDataSourceLiveData: LiveData<Boolean> get() = _hardCodedDataSourceLiveData
+
+    val chargingStationLiveData =
+        Transformations.switchMap(hardCodedDataSourceLiveData) { shouldShowHardCodedData ->
+            if (shouldShowHardCodedData) {
+                mainRepository.getHardCodedChargingFlow().cachedIn(viewModelScope).asLiveData()
+            } else {
+                mainRepository.getChargingStationFlowFromLocalDatabase().cachedIn(viewModelScope)
+                    .asLiveData()
+            }
+        }
 
     val loggedInUserLiveData = mainRepository.loggedInUserLiveData
 
@@ -39,6 +46,10 @@ constructor(private val mainRepository: MainRepository) : ViewModel() {
         viewModelScope.launch {
             mainRepository.deleteAllData()
         }
+    }
+
+    fun changeDataSource() {
+        _hardCodedDataSourceLiveData.value = !(hardCodedDataSourceLiveData.value ?: true)
     }
 
 

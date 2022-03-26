@@ -10,7 +10,7 @@ import com.codingmountain.kotlincodingtest.network.Resource
 import com.codingmountain.kotlincodingtest.network.SafeApiCall
 import com.codingmountain.kotlincodingtest.network.responses.stationresponse.ChargingStation
 import com.codingmountain.kotlincodingtest.network.services.StationApi
-import com.codingmountain.kotlincodingtest.ui.main.dashboard.paging.ChargingStationPagingSource
+import com.codingmountain.kotlincodingtest.ui.main.dashboard.paging.HardCodedChargingStationPagingSource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
@@ -33,9 +33,9 @@ constructor(
         _loggedInUserLiveData.value = firebaseAuth.currentUser
     }
 
-    fun getChargingStationFlow(): Flow<PagingData<ChargingStation>> {
+    fun getHardCodedChargingFlow(): Flow<PagingData<ChargingStation>> {
         return Pager(getPagingConfig()) {
-            ChargingStationPagingSource()
+            HardCodedChargingStationPagingSource()
         }.flow
     }
 

@@ -16,7 +16,6 @@ import com.codingmountain.kotlincodingtest.ui.base.BaseActivity
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.filterhelper.FilterHelper
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview.ChargingStationsRVA
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
@@ -36,11 +35,11 @@ class DashBoardActivity : BaseActivity() {
         binding = ActivityDashBoardBinding.inflate(layoutInflater)
 
         setUpToolbar()
-
-
         initializeFilterHelper()
+
         setObserverForCurrentUser()
         setUpSearchQueryChangeListener()
+
         setUpAdapterForRecyclerView()
 
         setContentView(binding.root)
@@ -55,16 +54,15 @@ class DashBoardActivity : BaseActivity() {
     private fun setUpSearchQueryChangeListener() {
         binding.dashboardActStationSearchView.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                searchQuery = newText.toString()
+            override fun onQueryTextChange(newText: String): Boolean {
+                searchQuery = newText
                 adapter.refresh()
                 return true
             }
-
         })
     }
 
@@ -79,7 +77,20 @@ class DashBoardActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_dashboard_act, menu)
+        setUpObserverForDataSourceLiveData(menu.findItem(R.id.dashBoardMenu_changeDataSource))
         return true
+    }
+
+    private fun setUpObserverForDataSourceLiveData(menuItem: MenuItem?) {
+        menuItem?.let {
+            viewModel.hardCodedDataSourceLiveData.observe(this) { hardCoded ->
+                menuItem.title = if (hardCoded) {
+                    "Show Local Data"
+                } else {
+                    "Show Hard Coded Data"
+                }
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -96,6 +107,9 @@ class DashBoardActivity : BaseActivity() {
             R.id.dashBoardMenu_logOut -> {
                 viewModel.logOut()
             }
+            R.id.dashBoardMenu_changeDataSource -> {
+                viewModel.changeDataSource()
+            }
             else -> {
                 return super.onOptionsItemSelected(item)
             }
@@ -109,15 +123,13 @@ class DashBoardActivity : BaseActivity() {
         binding.dashboardActStationsRV.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-
-        lifecycleScope.launch {
-            viewModel.chargingStationFlow.collectLatest {
+        viewModel.chargingStationLiveData.observe(this) {
+            lifecycleScope.launch {
                 adapter.submitData(
                     filterHelper.filterData(it, searchQuery)
                 )
             }
         }
-
 
     }
 

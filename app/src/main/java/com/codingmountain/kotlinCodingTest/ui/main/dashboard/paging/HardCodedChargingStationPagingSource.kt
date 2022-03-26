@@ -6,10 +6,9 @@ import com.codingmountain.kotlincodingtest.network.responses.stationresponse.Cha
 import com.google.gson.Gson
 import org.json.JSONArray
 
-class ChargingStationPagingSource : PagingSource<Int, ChargingStation>() {
+class HardCodedChargingStationPagingSource : PagingSource<Int, ChargingStation>() {
 
-    //The data will come from api later
-    val data = "[\n" +
+    private val data = "[\n" +
             "    {\n" +
             "        \"name\": \"Thapathali EV Showroom\",\n" +
             "        \"city\": \"Kathmandu\",\n" +
