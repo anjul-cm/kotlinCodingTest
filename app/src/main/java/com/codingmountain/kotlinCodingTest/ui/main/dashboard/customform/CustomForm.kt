@@ -75,6 +75,7 @@ open class CustomForm : LinearLayout {
         return TextView(context).apply {
             text = title
             typeface = ResourcesCompat.getFont(context, R.font.bevietnamprolight)
+            setTextColor(ContextCompat.getColor(context, R.color.gray_500))
         }
     }
 
