@@ -1,62 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="4dp"
-    android:background="@color/gray_200"
-    android:orientation="vertical"
-    android:padding="8dp">
-
-    <TextView
-        android:id="@+id/stationLyt_name_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Waterfront Resort" />
-
-    <TextView
-        android:id="@+id/stationLyt_city_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Pokhara" />
-
-    <TextView
-        android:id="@+id/stationLyt_province_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Gandaki" />
-
-    <TextView
-        android:id="@+id/stationLyt_address_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Pokhara" />
+    android:layout_marginVertical="8dp">
 
     <TextView
         android:id="@+id/stationLyt_phoneNum_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="+97761420004" />
+        android:gravity="center_vertical"
+        android:textColor="@color/gray_800"
+        app:drawableStartCompat="@drawable/ic_baseline_call_24"
+        app:layout_constraintBottom_toBottomOf="@+id/stationLyt_supportedTypes_TV"
+        app:layout_constraintEnd_toEndOf="@+id/stationLyt_latitude_TV"
+        app:layout_constraintTop_toTopOf="@+id/textView9"
+        tools:text="+9772392945" />
 
     <TextView
-        android:id="@+id/stationLyt_supportedTypes_TV"
+        android:id="@+id/stationLyt_name_TV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/blue_400"
+        android:textSize="24sp"
+        app:fontFamily="@font/bevietnampromedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Waterfront Resort" />
+
+
+    <TextView
+        android:id="@+id/stationLyt_address_TV"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/gray_700"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/stationLyt_name_TV"
+        app:layout_constraintStart_toStartOf="@+id/stationLyt_name_TV"
+        app:layout_constraintTop_toBottomOf="@+id/stationLyt_name_TV"
+        tools:text="Pokhara" />
+
+    <TextView
+        android:id="@+id/stationLyt_city_TV"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Car" />
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/stationLyt_address_TV"
+        app:layout_constraintTop_toBottomOf="@+id/stationLyt_address_TV"
+        tools:text="Pokhara" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintBottom_toBottomOf="@+id/stationLyt_city_TV"
+        app:layout_constraintStart_toEndOf="@+id/stationLyt_city_TV"
+        app:layout_constraintTop_toTopOf="@+id/stationLyt_city_TV" />
+
+    <TextView
+        android:id="@+id/stationLyt_province_TV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/stationLyt_address_TV"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="@+id/stationLyt_city_TV"
+        tools:text="Gandaki" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude: "
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/stationLyt_city_TV"
+        app:layout_constraintTop_toBottomOf="@+id/stationLyt_province_TV" />
 
     <TextView
         android:id="@+id/stationLyt_longitude_TV"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/stationLyt_province_TV"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="@+id/textView7"
         tools:text="27.43525489831263" />
 
     <TextView
         android:id="@+id/stationLyt_latitude_TV"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/stationLyt_longitude_TV"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/textView8"
         tools:text="85.0354169200935" />
 
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Supported Vehicles:"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/stationLyt_latitude_TV" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latitude: "
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/stationLyt_longitude_TV" />
+
+    <TextView
+        android:id="@+id/stationLyt_supportedTypes_TV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:textColor="@color/gray_700"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        tools:text="Car" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/curved_background_gray200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stationLyt_supportedTypes_TV" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
