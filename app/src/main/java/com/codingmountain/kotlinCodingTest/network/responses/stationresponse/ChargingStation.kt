@@ -1,3 +1,11 @@
+/*
+ * Created by Diken Maharjan
+ * dikenmaharjan10@gmail.com
+ * Last modified 3/26/22, 1:36 PM
+ * Copyright (c) 2022.
+ * All rights reserved.
+ */
+
 package com.codingmountain.kotlincodingtest.network.responses.stationresponse
 
 import androidx.room.ColumnInfo

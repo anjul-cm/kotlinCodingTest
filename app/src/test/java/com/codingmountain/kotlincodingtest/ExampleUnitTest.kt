@@ -1,8 +1,15 @@
+/*
+ * Created by Diken Maharjan
+ * dikenmaharjan10@gmail.com
+ * Last modified 3/24/22, 5:28 PM
+ * Copyright (c) 2022.
+ * All rights reserved.
+ */
+
 package com.codingmountain.kotlincodingtest
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).

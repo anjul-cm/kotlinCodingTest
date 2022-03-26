@@ -1,3 +1,11 @@
+/*
+ * Created by Diken Maharjan
+ * dikenmaharjan10@gmail.com
+ * Last modified 3/26/22, 8:00 PM
+ * Copyright (c) 2022.
+ * All rights reserved.
+ */
+
 package com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview
 
 import android.content.Intent

@@ -1,3 +1,11 @@
+/*
+ * Created by Diken Maharjan
+ * dikenmaharjan10@gmail.com
+ * Last modified 3/24/22, 10:27 PM
+ * Copyright (c) 2022.
+ * All rights reserved.
+ */
+
 package com.codingmountain.kotlincodingtest.ui.base
 
 import androidx.appcompat.app.AlertDialog

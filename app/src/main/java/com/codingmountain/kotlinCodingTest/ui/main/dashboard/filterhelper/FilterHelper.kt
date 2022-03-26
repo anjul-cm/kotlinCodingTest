@@ -1,3 +1,11 @@
+/*
+ * Created by Diken Maharjan
+ * dikenmaharjan10@gmail.com
+ * Last modified 3/26/22, 12:43 AM
+ * Copyright (c) 2022.
+ * All rights reserved.
+ */
+
 package com.codingmountain.kotlincodingtest.ui.main.dashboard.filterhelper
 
 import android.content.Context
