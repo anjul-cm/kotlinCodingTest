@@ -1,5 +1,7 @@
 package com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -25,8 +27,24 @@ class ChargingStationsRVA :
         }
     }
 
-    class Holder(private val binding: LayoutStationBinding) :
+    inner class Holder(private val binding: LayoutStationBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            setClickListenerForPhoneNumTextView()
+        }
+
+        private fun setClickListenerForPhoneNumTextView() {
+            binding.stationLytPhoneNumTV.setOnClickListener {
+                getItem(bindingAdapterPosition)?.let {
+                    binding.root.context.startActivity(
+                        Intent(Intent.ACTION_DIAL).apply {
+                            data = Uri.parse("tel:${it.telephone}")
+                        }
+                    )
+                }
+            }
+        }
 
         fun bindView(station: ChargingStation) {
             binding.apply {
