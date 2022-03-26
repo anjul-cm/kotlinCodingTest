@@ -58,11 +58,11 @@ class AddFilterBottomSheetFragment : BottomSheetDialogFragment() {
     private fun getFinalFilterList(): List<FilterWithValue> {
         val requiredList = mutableListOf<FilterWithValue>()
         formHashMap.forEach { form ->
-            if (form.value.formValue.isNotBlank()) {
+            if (form.value.getFormValue().isNotBlank()) {
                 requiredList.add(
                     FilterWithValue(
                         form.key,
-                        form.value.formValue
+                        form.value.getFormValue()
                     )
                 )
             }

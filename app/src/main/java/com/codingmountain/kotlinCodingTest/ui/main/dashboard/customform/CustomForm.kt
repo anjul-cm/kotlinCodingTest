@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.setPadding
-import androidx.core.widget.doOnTextChanged
 import com.codingmountain.kotlincodingtest.R
 import com.codingmountain.kotlincodingtest.utils.extensions.dpToPx
 
@@ -30,7 +29,6 @@ open class CustomForm : LinearLayout {
         defStyleRes: Int
     ) : super(context, attrs, defStyleAttr, defStyleRes)
 
-    var formValue = ""
     private var editText: EditText? = null
 
     fun initView(formInfo: FormInfo): CustomForm {
@@ -67,9 +65,6 @@ open class CustomForm : LinearLayout {
                 setMargins(0, context.dpToPx(4), 0, 0)
             }
             setPadding(context.dpToPx(12))
-            doOnTextChanged { text, _, _, _ ->
-                formValue = text.toString()
-            }
             typeface = ResourcesCompat.getFont(context, R.font.ralewaymedium)
             background = ContextCompat.getDrawable(context, R.drawable.edittext_background)
             setTextColor(ContextCompat.getColor(context, R.color.gray_900))
@@ -86,6 +81,8 @@ open class CustomForm : LinearLayout {
     fun setValue(text: String) {
         editText?.setText(text)
     }
+
+    fun getFormValue(): String = editText?.text.toString()
 }
 
 enum class FormType {
