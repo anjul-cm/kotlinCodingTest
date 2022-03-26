@@ -44,8 +44,19 @@ class AddFilterBottomSheetFragment : BottomSheetDialogFragment() {
 
         addAvailableFilters()
         addClickListenerToAddFilterBtn()
+        setClickListenerForDismissBtn()
+
+
         makeSureViewIsNotObscuredOnKeyboardAppearing()
+
+
         return binding.root
+    }
+
+    private fun setClickListenerForDismissBtn() {
+        binding.addFilterFrgDismissBtn.setOnClickListener {
+            dismiss()
+        }
     }
 
     private fun addClickListenerToAddFilterBtn() {
