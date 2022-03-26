@@ -36,9 +36,7 @@ class FilterHelper(
         orientation = LinearLayout.HORIZONTAL
     }
 
-
     private val addedFilters = mutableListOf<FilterWithValue>()
-
 
     init {
         scrollingContainerForFilter.addView(filterContainer)
@@ -46,6 +44,7 @@ class FilterHelper(
 
     fun showAddFilterFragment() {
         AddFilterBottomSheetFragment.onNewInstance(addedFilters).apply {
+
             addOnAddFilterCallback(object : AddFilterBottomSheetFragment.OnAddFilterClick {
                 override fun onAddFilterClick(filterList: List<FilterWithValue>) {
                     addedFilters.clear()
@@ -53,6 +52,7 @@ class FilterHelper(
                     showFilters()
                 }
             })
+
             show(
                 this@FilterHelper.fragmentManager, null
             )
@@ -113,15 +113,15 @@ class FilterHelper(
                 return@filter false
             }
             var visible = true
-            addedFilters.forEach { filterWithValue ->
-                visible = when (filterWithValue.filter) {
-                    Filter.ADDRESS -> matchesWithValue(it.address, filterWithValue.filterValue)
-                    Filter.CITY -> matchesWithValue(it.city, filterWithValue.filterValue)
-                    Filter.LATITUDE -> liesWithinFilter(it.latitude, filterWithValue.filterValue)
-                    Filter.LONGITUDE -> liesWithinFilter(it.longitude, filterWithValue.filterValue)
-                    Filter.PROVINCE -> matchesWithValue(it.province, filterWithValue.filterValue)
-                    Filter.TELEPHONE -> matchesWithValue(it.telephone, filterWithValue.filterValue)
-                    Filter.TYPE -> liesInList(it.type, filterWithValue.filterValue)
+            addedFilters.forEach { filter ->
+                visible = when (filter.filter) {
+                    Filter.ADDRESS -> matchesWithValue(it.address, filter.filterValue, true)
+                    Filter.CITY -> matchesWithValue(it.city, filter.filterValue, false)
+                    Filter.LATITUDE -> liesWithinFilter(it.latitude, filter.filterValue)
+                    Filter.LONGITUDE -> liesWithinFilter(it.longitude, filter.filterValue)
+                    Filter.PROVINCE -> matchesWithValue(it.province, filter.filterValue, false)
+                    Filter.TELEPHONE -> matchesWithValue(it.telephone, filter.filterValue, false)
+                    Filter.TYPE -> liesInList(it.type, filter.filterValue)
                 }
                 if (!visible) {
                     return@filter false
@@ -132,9 +132,17 @@ class FilterHelper(
 
     }
 
-    private fun matchesWithValue(value: String, filterValue: String?): Boolean {
+    private fun matchesWithValue(
+        value: String,
+        filterValue: String?,
+        subStringMatch: Boolean
+    ): Boolean {
         filterValue?.let {
-            return it.trim().lowercase() == value.trim().lowercase()
+            return if (subStringMatch) {
+                it.trim().lowercase() in value.trim().lowercase()
+            } else {
+                it.trim().lowercase() == value.trim().lowercase()
+            }
         }
         return true
     }
