@@ -51,15 +51,16 @@ class DashBoardActivity : BaseActivity() {
     private fun setUpObserverForFetchingData() {
         viewModel.fetchChargingLiveData.observe(this) { fetchingStatus ->
             binding.dashboardActFetchingProgressBar.visibility = when (fetchingStatus) {
-                is Resource.Failure -> View.GONE
+                is Resource.Failure -> View.INVISIBLE
                 Resource.Loading -> View.VISIBLE
-                is Resource.Success -> View.GONE
+                is Resource.Success -> View.INVISIBLE
             }
         }
     }
 
     private fun setUpToolbar() {
         setSupportActionBar(binding.dashboardActToolBar)
+        binding.dashboardActToolBar.title = ""
         binding.dashboardActToolBar.overflowIcon =
             ContextCompat.getDrawable(this, R.drawable.ic_baseline_overflow)
     }
@@ -98,8 +99,10 @@ class DashBoardActivity : BaseActivity() {
         menuItem?.let {
             viewModel.hardCodedDataSourceLiveData.observe(this) { hardCoded ->
                 menuItem.title = if (hardCoded) {
+                    binding.dashboardActToolBar.title = "Hard Coded Data"
                     "Show Local Data"
                 } else {
+                    binding.dashboardActToolBar.title = "Locally Stored Data"
                     "Show Hard Coded Data"
                 }
             }

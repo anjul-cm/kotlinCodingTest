@@ -15,17 +15,8 @@
         android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/dashboardAct_station_searchView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            app:iconifiedByDefault="false"
-            app:queryBackground="@null"
-            app:queryHint="Search For Stations" />
-    </androidx.appcompat.widget.Toolbar>
 
     <ProgressBar
         android:id="@+id/dashboardAct_fetching_progressBar"
@@ -33,12 +24,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dashboardAct_toolBar"
         tools:visibility="visible" />
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/dashboardAct_station_searchView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/curved_background_white"
+        app:iconifiedByDefault="false"
+
+        app:layout_constraintEnd_toEndOf="@id/dashboardAct_stations_RV"
+        app:layout_constraintStart_toStartOf="@id/dashboardAct_stations_RV"
+        app:layout_constraintTop_toBottomOf="@id/dashboardAct_fetching_progressBar"
+        app:queryBackground="@null"
+        app:queryHint="Search For Stations" />
 
     <HorizontalScrollView
         android:id="@+id/dashBoardAct_filterContaining_scrollView"
@@ -47,7 +51,7 @@
         android:layout_marginVertical="8dp"
         app:layout_constraintEnd_toEndOf="@+id/dashboardAct_stations_RV"
         app:layout_constraintStart_toStartOf="@+id/dashboardAct_stations_RV"
-        app:layout_constraintTop_toBottomOf="@+id/dashboardAct_fetching_progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/dashboardAct_station_searchView" />
 
 
     <androidx.recyclerview.widget.RecyclerView
