@@ -9,6 +9,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codingmountain.kotlincodingtest.R
 import com.codingmountain.kotlincodingtest.databinding.ActivityDashBoardBinding
@@ -17,7 +19,9 @@ import com.codingmountain.kotlincodingtest.ui.auth.AuthActivity
 import com.codingmountain.kotlincodingtest.ui.base.BaseActivity
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.filterhelper.FilterHelper
 import com.codingmountain.kotlincodingtest.ui.main.dashboard.recyclerview.ChargingStationsRVA
+import com.codingmountain.kotlincodingtest.utils.adapter.ErrorStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
@@ -30,7 +34,9 @@ class DashBoardActivity : BaseActivity() {
 
 
     private var searchQuery = ""
+
     private val adapter = ChargingStationsRVA()
+    private val errorStateAdapter = ErrorStateAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -140,9 +146,19 @@ class DashBoardActivity : BaseActivity() {
     }
 
     private fun setUpAdapterForRecyclerView() {
-        binding.dashboardActStationsRV.adapter = adapter
+        binding.dashboardActStationsRV.adapter = ConcatAdapter(
+            adapter, errorStateAdapter
+        )
         binding.dashboardActStationsRV.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        lifecycleScope.launch {
+            adapter.loadStateFlow.collectLatest { loadState ->
+                errorStateAdapter.isDisplayed = loadState.source.refresh is LoadState.NotLoading
+                        && loadState.append.endOfPaginationReached
+                        && adapter.itemCount < 1
+            }
+        }
 
         viewModel.chargingStationLiveData.observe(this) {
             lifecycleScope.launch {
