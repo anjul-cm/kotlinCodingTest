@@ -65,7 +65,7 @@ open class CustomForm : LinearLayout {
                 setMargins(0, context.dpToPx(4), 0, 0)
             }
             setPadding(context.dpToPx(12))
-            typeface = ResourcesCompat.getFont(context, R.font.ralewaymedium)
+            typeface = ResourcesCompat.getFont(context, R.font.bevietnamproregular)
             background = ContextCompat.getDrawable(context, R.drawable.edittext_background)
             setTextColor(ContextCompat.getColor(context, R.color.gray_900))
         }
@@ -74,7 +74,7 @@ open class CustomForm : LinearLayout {
     private fun getTextViewForTitle(title: String): TextView {
         return TextView(context).apply {
             text = title
-            typeface = ResourcesCompat.getFont(context, R.font.ralewaymedium)
+            typeface = ResourcesCompat.getFont(context, R.font.bevietnamprolight)
         }
     }
 
