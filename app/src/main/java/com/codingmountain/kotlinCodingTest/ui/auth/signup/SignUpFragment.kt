@@ -28,10 +28,10 @@ class SignUpFragment : Fragment() {
     }
 
     private fun setClickListenerToSignUpBtn() {
-        binding.loginActSignUpBtn.setOnClickListener {
+        binding.signUpFrgSignUpBtn.setOnClickListener {
             activityViewModel.signUp(
-                binding.loginActEmailTV.text.toString(),
-                binding.loginActPasswordTV.text.toString()
+                binding.signupFrgEmailET.text.toString(),
+                binding.signUpFrgPasswordTV.text.toString()
             )
         }
     }
