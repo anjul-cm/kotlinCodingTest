@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun setClickListenerForLoginBtn() {
-        binding.loginFrgSignUpTV.setOnClickListener {
+        binding.loginFrgLogInBtn.setOnClickListener {
             activityViewModel.logIn(
                 binding.loginFrgEmailET.text.toString().trim(),
                 binding.loginFrgPasswordET.text.toString().trim()
